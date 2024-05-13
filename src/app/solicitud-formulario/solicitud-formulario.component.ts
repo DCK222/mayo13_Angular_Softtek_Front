@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './solicitud-formulario.component.css'
 })
 export class SolicitudFormularioComponent implements OnInit {
-  form!: FormGroup;  // Uso del operador de aserción no nulo
+  form!: FormGroup; 
 
   constructor(
     private formBuilder: FormBuilder,
