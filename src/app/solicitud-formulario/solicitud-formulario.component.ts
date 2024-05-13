@@ -41,5 +41,6 @@ export class SolicitudFormularioComponent implements OnInit {
         },
       });
     } 
+    location.reload();
   }
 }

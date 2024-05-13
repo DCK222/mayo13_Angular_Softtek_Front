@@ -1,0 +1,11 @@
+<h3>Lista Solicitudes Coche</h3>
+<ul>
+@for (solicitud of solicitudes; track $index) {
+    <li>
+    {{ solicitud.nombre }}
+    {{ solicitud.marca }}
+    {{ solicitud.modelo }}
+    </li>
+    <button (click)="eliminarSolicitud(+solicitud.idSolicitud)">Eliminar</button>
+}
+</ul>
