@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CocheSolicitudService } from '../_servicio/CocheSolicitud.service';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CocheSolicitud } from '../_modelo/CocheSolicitud';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -13,18 +13,23 @@ import { CommonModule } from '@angular/common';
   templateUrl: './solicitud-formulario.component.html',
   styleUrl: './solicitud-formulario.component.css'
 })
-export class SolicitudFormularioComponent {
-  form: FormGroup = new FormGroup({
-    nombre: new FormControl(''),
-    marca: new FormControl(''),
-    modelo: new FormControl('')
-  });
+export class SolicitudFormularioComponent implements OnInit {
+  form!: FormGroup;  // Uso del operador de aserción no nulo
 
   constructor(
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute, 
     private router: Router, 
     private servicio: CocheSolicitudService
   ) {}
+
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      marca: ['', Validators.required],
+      modelo: ['', [Validators.required, Validators.minLength(1)]]
+    });
+  }
 
   formularioOperacion(): void {
     if (this.form.valid) {
@@ -35,6 +40,6 @@ export class SolicitudFormularioComponent {
           console.log('Bien, solicitud creada');
         },
       });
-    }
+    } 
   }
 }
