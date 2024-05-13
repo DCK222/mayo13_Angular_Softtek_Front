@@ -1,0 +1,15 @@
+<h3>Solcitud Informaicon Vehiculo : </h3>
+
+<form [formGroup]="form" (ngSubmit)="formularioOperacion()">
+
+    <label for="nombre">Nombre Completo:</label>
+    <input placeholder="nombre" formControlName="nombre" id="nombre" type="text">
+
+    <label for="marca">Marca Vehículo:</label>
+    <input placeholder="marca" formControlName="marca" id="marca" type="text">
+
+    <label for="modelo">Modelo Vehículo:</label>
+    <input placeholder="modelo" formControlName="modelo" id="modelo" type="text">
+
+    <button type="submit" [disabled]="form.invalid">Enviar</button>
+</form>
